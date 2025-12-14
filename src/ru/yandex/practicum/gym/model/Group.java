@@ -1,4 +1,4 @@
-package ru.yandex.practicum.gym;
+package ru.yandex.practicum.gym.model;
 
 public class Group {
     //название группы
