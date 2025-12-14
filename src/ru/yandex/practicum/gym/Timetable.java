@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Timetable {
 
-    private HashMap<DayOfWeek, TreeMap<TimeOfDay, List<TrainingSession>>> timetable = new HashMap<>();
+    private Map<DayOfWeek, TreeMap<TimeOfDay, List<TrainingSession>>> timetable = new HashMap<>();
 
     public void addNewTrainingSession(TrainingSession trainingSession) {
         //сохраняем занятие в расписании
@@ -44,7 +44,7 @@ public class Timetable {
         return dayTimeWithTrainingSession.getOrDefault(timeOfDay, Collections.emptyList());
     }
 
-    public List<CounterOfTrainings> getCountByCoaches() {
+    public Set<CounterOfTrainings> getCountByCoaches() {
         Map<Coach, Integer> counters = new HashMap<>();
 
         for (TreeMap<TimeOfDay, List<TrainingSession>> dayTimeWithTrainingSession : timetable.values()) {
@@ -55,12 +55,11 @@ public class Timetable {
             }
         }
 
-        List<CounterOfTrainings> counterOfTrainings = new ArrayList<>();
+        Set<CounterOfTrainings> counterOfTrainings = new TreeSet<>();
         for (Map.Entry<Coach, Integer> entry : counters.entrySet()) {
             counterOfTrainings.add(new CounterOfTrainings(entry.getKey(), entry.getValue()));
         }
 
-        counterOfTrainings.sort((a, b) -> Integer.compare(b.getCount(), a.getCount()));
         return counterOfTrainings;
     }
 
