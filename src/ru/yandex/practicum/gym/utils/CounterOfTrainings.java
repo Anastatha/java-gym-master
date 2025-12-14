@@ -21,7 +21,7 @@ public class CounterOfTrainings implements Comparable<CounterOfTrainings> {
 
     @Override
     public int compareTo(CounterOfTrainings o) {
-        int count = Integer.compare(this.count, o.count);
+        int count = Integer.compare(o.count, this.count);
         if (count != 0) return count;
 
         int surname = this.coach.getSurname()
